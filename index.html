@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src &apos;none&apos;; script-src &apos;sha256-lf2nFgFKXsskIfa6I2GttMfxhh0+rzPoU/suwdA4AU0=&apos;; style-src &apos;unsafe-inline&apos;; connect-src https://formsubmit.co; base-uri &apos;none&apos;; form-action &apos;none&apos;">
 <title>IT PMO – Project Board (Demo)</title>
 <style>
 /* Layout concept: navy control header with a proportional status bar, a slim toolbar (view switch + filters),
@@ -231,7 +233,7 @@ form { padding: var(--sp-5); display: grid; grid-template-columns: 1fr 1fr; gap:
     </label>
     <button type="button" class="btn secondary" id="clearFilters">Clear filters</button>
   </section>
-  <span class="note">Demo data lives in memory only. Refreshing the page resets the board.</span>
+  <span class="note">Demo only, not an official channel. Data lives in memory; refreshing resets the board. New tasks are emailed via formsubmit.co, so do not enter real project data.</span>
 </div>
 
 <main>
@@ -309,6 +311,9 @@ form { padding: var(--sp-5); display: grid; grid-template-columns: 1fr 1fr; gap:
 -->
 <script>
 "use strict";
+
+/* Framing guard: GitHub Pages cannot send frame-ancestors, so refuse to run inside a frame. */
+if (window.top !== window.self) { document.documentElement.hidden = true; window.top.location = window.self.location; }
 
 /* =====================================================================
    CONFIG — swap YOUR_EMAIL@example.com here; it is used nowhere else.
@@ -554,7 +559,7 @@ async function notifyNewTask(task) {
     body: JSON.stringify({
       _subject: `[UOB IT PMO] New task ${task.id}: ${task.title}`,
       _template: "table",
-      _captcha: "false",
+      _honey: "",            // honeypot field: bots fill it, FormSubmit drops the message
       "Task ID": task.id,
       Title: task.title,
       Description: task.description,

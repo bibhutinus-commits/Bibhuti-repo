@@ -1,0 +1,16 @@
+# secrets and keys
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+id_rsa*
+credentials*
+
+# logs, databases, dependencies
+*.log
+*.sqlite
+node_modules/
+
+# local scratch and generated reports
+New Text Document.txt

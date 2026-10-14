@@ -14,6 +14,7 @@ There are no tests, so verify changes by hand: open the file, check the browser 
 - No persistence of any kind (no localStorage, sessionStorage, IndexedDB, cookies). A refresh must reset the board to seed data. The UI says so.
 - The only network call is `notifyNewTask()` to FormSubmit's AJAX endpoint (`FORMSUBMIT_ENDPOINT`, the first constant in the script). The email address lives only there. A FormSubmit failure must never break the board; it only produces a warning toast.
 - No real UOB logo or branding. The wordmark is plain "IT PMO" text and the palette is corporate blue. The `UOB-ITPM-####` task IDs and the `[UOB IT PMO]` email subject are intentional.
+- A `<meta>` Content-Security-Policy allows the inline script by SHA-256 hash. After ANY edit to the `<script>` block, regenerate the hash (sha256, base64, of the text, with line endings normalised to LF, between `<script>` and `</script>`) and update `script-src`, or the page will not run.
 - No `!important`; styling uses the CSS custom properties in `:root`.
 
 ## Architecture
