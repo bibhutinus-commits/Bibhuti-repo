@@ -2,8 +2,7 @@
 
 A single-page Kanban board for a fictitious bank's internal IT PMO. It is a demo and training tool, not an official system, and it uses no real bank logo or branding.
 
-**Live demo:** https://bibhutinus-commits.github.io/Bibhuti-repo/ (original design)
-**Version 2 (redesign with Timeline view):** https://bibhutinus-commits.github.io/Bibhuti-repo/v2/ (published from the `v2` branch)
+**Live demo:** https://bibhutinus-commits.github.io/Bibhuti-repo/
 
 ## Features
 
