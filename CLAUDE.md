@@ -20,7 +20,8 @@ There are no tests, so verify changes by hand: open the file, check the browser 
 
 All logic is in the `<script>` block and follows one pattern: **mutate `state`, then call `renderBoard()`.**
 
-- `state = { tasks, filters, nextId, confirmDeleteId, dragId, dropStatus }` is the single source of truth. `confirmDeleteId`, `dragId` and `dropStatus` are transient UI state that drives the inline "Delete? Yes/No" confirm and the drag-over highlight.
+- A Board/Timeline view switch (`state.view`) shows the same filtered tasks either as lanes or as due-date dots grouped by project (`renderTimeline()`, called from `renderBoard()`; pixel scale is `TL_PPD`).
+- `state = { tasks, filters, view, nextId, confirmDeleteId, dragId, dropStatus }` is the single source of truth. `confirmDeleteId`, `dragId` and `dropStatus` are transient UI state that drives the inline "Delete? Yes/No" confirm and the drag-over highlight.
 - `renderBoard()` rebuilds all four columns, via `renderCard()`, from `applyFilters(state.tasks)`, then calls `renderSummary()`. Card and column markup must only be written there. Do not mutate card DOM elsewhere.
 - Event handling is delegated on `#board` (click, change, and the drag events), because the board's innerHTML is replaced on every render.
 - Drag and drop: `dragstart` must NOT re-render, since that cancels the drag. `dragover` toggles the `drop-target` class directly on the columns. `drop` and `dragend` clear the state and re-render.

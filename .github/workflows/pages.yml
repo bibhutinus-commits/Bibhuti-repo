@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, v2]
   workflow_dispatch:
 
 permissions:
@@ -26,6 +26,18 @@ jobs:
         run: |
           mkdir _site
           cp index.html _site/
+      - name: On v2, keep the main design at the root and publish v2 under /v2/
+        if: github.ref_name == 'v2'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: _main
+      - name: Arrange v2 layout
+        if: github.ref_name == 'v2'
+        run: |
+          mkdir -p _site/v2
+          cp index.html _site/v2/index.html
+          cp _main/index.html _site/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

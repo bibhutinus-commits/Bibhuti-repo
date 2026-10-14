@@ -2,10 +2,13 @@
 
 A single-page Kanban board for a fictitious bank's internal IT PMO. It is a demo and training tool, not an official system, and it uses no real bank logo or branding.
 
-**Live demo:** https://bibhutinus-commits.github.io/Bibhuti-repo/
+**Live demo:** https://bibhutinus-commits.github.io/Bibhuti-repo/ (original design)
+**Version 2 (redesign with Timeline view):** https://bibhutinus-commits.github.io/Bibhuti-repo/v2/ (published from the `v2` branch)
 
 ## Features
 
+- Board and Timeline views. The Timeline plots each task on its due date, one row per project, with a Today marker.
+- A header status bar showing how tasks split across columns.
 - Four fixed columns: Backlog, In Progress, Blocked, Done, each with a live count.
 - Drag and drop cards between columns, or use the keyboard-friendly "Move ▸" control on each card.
 - Cards show task ID, title, project, assignee, priority, due date and category. Overdue tasks get a badge.
